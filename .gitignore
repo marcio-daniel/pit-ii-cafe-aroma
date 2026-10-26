@@ -1,0 +1,17 @@
+*.class
+*.log
+*.jar
+*.war
+*.ear
+*.zip
+hs_err_pid*
+replay_pid*
+
+backend/target/
+frontend/node_modules/
+frontend/dist/
+.idea/
+*.iml
+.DS_Store
+.env
+.vscode/

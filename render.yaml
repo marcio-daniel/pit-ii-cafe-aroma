@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: cafe-aroma-da-serra
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: JAVA_OPTS
+        value: -Xmx256m

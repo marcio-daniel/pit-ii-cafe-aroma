@@ -1,0 +1,187 @@
+:root {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  color: #2c2118;
+  background: #f6f1ea;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 3rem;
+}
+
+.topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #d9cbb8;
+}
+
+.marca {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #5c3d2e;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  color: #5c3d2e;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: #fffdf9;
+  border: 1px solid #e4d7c5;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.muted {
+  color: #6b5b4d;
+  font-size: 0.92rem;
+}
+
+.preco {
+  font-weight: 700;
+  color: #3f6b3a;
+  margin: 0.75rem 0;
+}
+
+.botao {
+  display: inline-block;
+  border: none;
+  border-radius: 6px;
+  padding: 0.55rem 0.9rem;
+  background: #5c3d2e;
+  color: #fffdf9;
+}
+
+.botao:hover {
+  background: #4a3124;
+}
+
+.botao.secundario {
+  background: #8a7360;
+}
+
+.botao.perigo {
+  background: #8b3a2f;
+}
+
+.formulario {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 480px;
+}
+
+.formulario label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.formulario input,
+.formulario select {
+  padding: 0.55rem 0.65rem;
+  border: 1px solid #cbbba6;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fffdf9;
+}
+
+.tabela th,
+.tabela td {
+  border: 1px solid #e4d7c5;
+  padding: 0.65rem;
+  text-align: left;
+}
+
+.alerta {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  background: #f8e7e3;
+  color: #7a2e24;
+  margin-bottom: 1rem;
+}
+
+.sucesso {
+  background: #e5f2e3;
+  color: #2f5d2c;
+}
+
+.titulo-pagina {
+  margin-top: 0;
+}
+
+.acoes {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.qtd {
+  width: 4rem;
+  padding: 0.35rem;
+}

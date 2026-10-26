@@ -1,0 +1,9 @@
+**/node_modules
+**/dist
+**/target
+**/.git
+**/.idea
+**/*.md
+frontend/dist
+backend/target
+backend/.mvn/wrapper/maven-wrapper.jar
