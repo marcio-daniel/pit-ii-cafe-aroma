@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { adicionarAoCarrinho, buscarProduto, formatarPreco, type Produto } from '../api'
@@ -30,7 +31,7 @@ export default function ProdutoDetalhe() {
   }
 
   if (!produto && !erro) {
-    return <p>Carregando...</p>
+    return <p className="muted">Carregando...</p>
   }
 
   if (!produto) {
@@ -38,17 +39,17 @@ export default function ProdutoDetalhe() {
   }
 
   return (
-    <div>
-      <p className="muted">
-        <Link to="/">Voltar para a vitrine</Link>
-      </p>
-      <article className="card">
-        <p className="muted">{produto.categoria}</p>
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }}>
+      <Link className="voltar" to="/">
+        ← Voltar para a vitrine
+      </Link>
+      <article className="painel">
+        <span className="tag">{produto.categoria}</span>
         <h1 className="titulo-pagina">{produto.nome}</h1>
-        <p>{produto.descricao}</p>
+        <p className="page-lead">{produto.descricao}</p>
         <p className="preco">{formatarPreco(produto.preco)}</p>
         <div className="acoes">
-          <label>
+          <label className="muted">
             Qtd
             <input
               className="qtd"
@@ -65,9 +66,20 @@ export default function ProdutoDetalhe() {
             Ir ao carrinho
           </button>
         </div>
-        {ok && <p className="alerta sucesso">{ok}</p>}
+        <AnimatePresence>
+          {ok && (
+            <motion.p
+              className="alerta sucesso"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+            >
+              {ok}
+            </motion.p>
+          )}
+        </AnimatePresence>
         {erro && <p className="alerta">{erro}</p>}
       </article>
-    </div>
+    </motion.div>
   )
 }

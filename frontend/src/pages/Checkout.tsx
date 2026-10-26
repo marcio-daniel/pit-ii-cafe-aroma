@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { criarPedido } from '../api'
@@ -35,11 +36,11 @@ export default function Checkout() {
   }
 
   return (
-    <div>
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }}>
       <h1 className="titulo-pagina">Checkout</h1>
-      <p className="muted">Informe seus dados para concluir o pedido.</p>
+      <p className="page-lead">Informe seus dados para concluir o pedido e a entrega.</p>
       {erro && <div className="alerta">{erro}</div>}
-      <form className="formulario" onSubmit={enviar}>
+      <form className="formulario painel" onSubmit={enviar}>
         <label>
           Nome
           <input value={form.nome} onChange={(e) => atualizar('nome', e.target.value)} required />
@@ -53,7 +54,7 @@ export default function Checkout() {
           <input value={form.telefone} onChange={(e) => atualizar('telefone', e.target.value)} />
         </label>
         <label>
-          Endereco
+          Endereço
           <input value={form.endereco} onChange={(e) => atualizar('endereco', e.target.value)} required />
         </label>
         <label>
@@ -68,7 +69,7 @@ export default function Checkout() {
           Forma de pagamento
           <select value={form.formaPagamento} onChange={(e) => atualizar('formaPagamento', e.target.value)}>
             <option value="PIX">PIX</option>
-            <option value="Cartao">Cartao</option>
+            <option value="Cartao">Cartão</option>
             <option value="Dinheiro na entrega">Dinheiro na entrega</option>
           </select>
         </label>
@@ -76,6 +77,6 @@ export default function Checkout() {
           {enviando ? 'Enviando...' : 'Confirmar pedido'}
         </button>
       </form>
-    </div>
+    </motion.div>
   )
 }

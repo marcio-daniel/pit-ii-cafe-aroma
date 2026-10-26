@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
@@ -41,59 +42,69 @@ export default function Carrinho() {
   }
 
   if (!carrinho && !erro) {
-    return <p>Carregando carrinho...</p>
+    return <p className="muted">Carregando carrinho...</p>
   }
 
   return (
-    <div>
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }}>
       <h1 className="titulo-pagina">Carrinho</h1>
+      <p className="page-lead">Revise os itens antes de finalizar o pedido.</p>
       {erro && <div className="alerta">{erro}</div>}
       {!carrinho?.itens.length ? (
-        <p className="muted">
-          Seu carrinho esta vazio. <Link to="/">Continuar comprando</Link>
-        </p>
+        <div className="painel">
+          <p className="muted">
+            Seu carrinho está vazio. <Link to="/">Continuar comprando</Link>
+          </p>
+        </div>
       ) : (
         <>
-          <table className="tabela">
-            <thead>
-              <tr>
-                <th>Produto</th>
-                <th>Preco</th>
-                <th>Qtd</th>
-                <th>Subtotal</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {carrinho.itens.map((item) => (
-                <tr key={item.produtoId}>
-                  <td>{item.nome}</td>
-                  <td>{formatarPreco(item.precoUnitario)}</td>
-                  <td>
-                    <input
-                      className="qtd"
-                      type="number"
-                      min={1}
-                      value={item.quantidade}
-                      onChange={(e) => mudarQtd(item.produtoId, Number(e.target.value))}
-                    />
-                  </td>
-                  <td>{formatarPreco(item.subtotal)}</td>
-                  <td>
-                    <button className="botao perigo" type="button" onClick={() => remover(item.produtoId)}>
-                      Remover
-                    </button>
-                  </td>
+          <div className="tabela-wrap">
+            <table className="tabela">
+              <thead>
+                <tr>
+                  <th>Produto</th>
+                  <th>Preço</th>
+                  <th>Qtd</th>
+                  <th>Subtotal</th>
+                  <th></th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          <p className="preco">Total: {formatarPreco(carrinho.total)}</p>
+              </thead>
+              <tbody>
+                {carrinho.itens.map((item) => (
+                  <tr key={item.produtoId}>
+                    <td>{item.nome}</td>
+                    <td>{formatarPreco(item.precoUnitario)}</td>
+                    <td>
+                      <input
+                        className="qtd"
+                        type="number"
+                        min={1}
+                        value={item.quantidade}
+                        onChange={(e) => mudarQtd(item.produtoId, Number(e.target.value))}
+                      />
+                    </td>
+                    <td>{formatarPreco(item.subtotal)}</td>
+                    <td>
+                      <button className="botao perigo" type="button" onClick={() => remover(item.produtoId)}>
+                        Remover
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="total-linha">
+            <span className="muted">Total</span>
+            <span className="preco" style={{ margin: 0 }}>
+              {formatarPreco(carrinho.total)}
+            </span>
+          </div>
           <Link className="botao" to="/checkout">
             Finalizar pedido
           </Link>
         </>
       )}
-    </div>
+    </motion.div>
   )
 }

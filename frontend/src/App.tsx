@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, NavLink, Route, Routes } from 'react-router-dom'
 import Admin from './pages/Admin'
 import Carrinho from './pages/Carrinho'
 import Checkout from './pages/Checkout'
@@ -10,11 +10,19 @@ export default function App() {
   return (
     <div className="app-shell">
       <header className="topo">
-        <Link className="marca" to="/">Cafe Aroma da Serra</Link>
+        <Link className="marca" to="/">
+          Café <span>Aroma da Serra</span>
+        </Link>
         <nav className="nav">
-          <Link to="/">Vitrine</Link>
-          <Link to="/carrinho">Carrinho</Link>
-          <Link to="/admin">Admin</Link>
+          <NavLink to="/" end className={({ isActive }) => (isActive ? 'ativo' : undefined)}>
+            Vitrine
+          </NavLink>
+          <NavLink to="/carrinho" className={({ isActive }) => (isActive ? 'ativo' : undefined)}>
+            Carrinho
+          </NavLink>
+          <NavLink to="/admin" className={({ isActive }) => (isActive ? 'ativo' : undefined)}>
+            Admin
+          </NavLink>
         </nav>
       </header>
       <main>
